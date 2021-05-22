@@ -3,12 +3,16 @@ package com.example.rgd_monitor;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.rgd_monitor.adapter.Constants;
 import com.example.rgd_monitor.adapter.CustomArrayAdapter;
 
 import org.json.JSONException;
@@ -57,6 +61,29 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list_view);
         adapter = new CustomArrayAdapter(this, R.layout.list_item, rusRailwaysInfos);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                RusRailwaysInfo item = rusRailwaysInfos.get(position);
+
+
+                Intent intent = new Intent(getApplicationContext(), IncidentInfoActivity.class);
+                intent.putExtra(Constants.DESC_TICKED_ID_KEY, item.getDescription() + item.getTickedId());
+                intent.putExtra(Constants.REGISTRATOR_KEY, item.getReportedBy());
+                intent.putExtra(Constants.CRITIC_LVL_KEY, item.getCriticLevel());
+                intent.putExtra(Constants.BEGIN_DATE_KEY, item.getIsKnownErrorDate());
+                intent.putExtra(Constants.END_DATE_KEY, item.getTargetFinish());
+                intent.putExtra(Constants.SYSTEM_KEY, item.getExtSysName());
+                intent.putExtra(Constants.STATUS_KEY, item.getStatus());
+                intent.putExtra(Constants.DEVIATION_KEY, item.getNorm());
+                intent.putExtra(Constants.DISTANCE_KEY, "Не указано");
+
+                startActivity(intent);
+            }
+        });
     }
 
 

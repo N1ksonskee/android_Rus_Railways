@@ -4,4 +4,11 @@
     <string name="end_date">Крайний срок</string>
     <string name="status">Статус</string>
     <string name="action_bar_title_incidents">Инциденты</string>
+    <string name="action_bar_title_incident">Инцидент</string>
+
+    <string name="registrator">Регистратор</string>
+    <string name="criticalLvl">Уровень критичнотсти</string>
+    <string name="system">Система</string>
+    <string name="deviation">Отклонение</string>
+    <string name="distance">Протяженность</string>
 </resources>

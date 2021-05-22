@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/inc_info_desc_ticketId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:padding="8dp"
+        android:text="---"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inc_info_desc_ticketId" />
+
+
+    <TextView
+        android:id="@+id/tv_common_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="8dp"
+        android:text="Общая информация"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inc_info_desc_ticketId" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rect_layout"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_common_info">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registrator"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_registrator"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/criticalLvl"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_critical_lvl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/begin_date"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_begin_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_date"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/system"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_system"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deviation"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_deviation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/distance"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:id="@+id/inc_info_distance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_horizontal"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
