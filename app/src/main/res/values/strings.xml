@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">rgd_monitor</string>
+    <string name="begin_date">Дата выявления</string>
+    <string name="end_date">Крайний срок</string>
+    <string name="status">Статус</string>
+    <string name="action_bar_title_incidents">Инциденты</string>
+</resources>
