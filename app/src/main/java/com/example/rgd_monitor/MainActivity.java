@@ -4,16 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.database.MatrixCursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.example.rgd_monitor.adapter.Constants;
 import com.example.rgd_monitor.adapter.CustomArrayAdapter;
+import com.example.rgd_monitor.db.DBManager;
 
 import org.json.JSONException;
 
@@ -29,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private CustomArrayAdapter adapter;
     private ArrayList<RusRailwaysInfo> rusRailwaysInfos;
     private ListView listView;
+    SharedPreferences sp;
+
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().setTitle(R.string.action_bar_title_incidents);
+
+        dbManager = new DBManager(this);
+        dbManager.openDB();
+        //dbManager.removeAll();
+
 
         try {
             InputStream in = getResources().openRawResource(R.raw.incidents);
@@ -58,6 +73,25 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+        // создаем хранилище для хранения примитивных данных
+        sp = getSharedPreferences("table", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        // первый запуск: переменной в хранилище нет, но defValue = true => код выполнится
+        // последующий запуск: переменная в хранилище есть и она равна false => код не выполнится
+        if(sp.getBoolean("first_run", true)) {
+            for(int i = 0; i < rusRailwaysInfos.size(); i++) {
+                dbManager.insertToDB(rusRailwaysInfos.get(i));
+            }
+
+            // помещаем в хранилище first_run = false;
+            editor.putBoolean("first_run", !getResources().getBoolean(R.bool.first_run));
+            editor.apply();
+        }
+
+
+
         listView = findViewById(R.id.list_view);
         adapter = new CustomArrayAdapter(this, R.layout.list_item, rusRailwaysInfos);
         listView.setAdapter(adapter);
@@ -65,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 RusRailwaysInfo item = rusRailwaysInfos.get(position);
 
@@ -84,6 +117,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
+       // adapter.updateAdapter(dbManager.getFromDB(""));
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbManager.closeDB();
     }
 
 
@@ -147,6 +198,10 @@ public class MainActivity extends AppCompatActivity {
         reader.endObject();
 
 
+        // add 1 row into table`s DB
+//        dbManager.insertToDB(status, tickedId, reportedBy, classIdMain, criticalLevel, isKnownErrorDateParsed, targetFinishParsed,description,
+//                extSysName, norm, lnorm);
+
         return new RusRailwaysInfo(status, tickedId, reportedBy, classIdMain, criticalLevel, isKnownErrorDateParsed, targetFinishParsed, description,
                 extSysName, norm, lnorm);
     }
@@ -159,5 +214,30 @@ public class MainActivity extends AppCompatActivity {
         return date.substring(8, 10) + "-" + date.substring(5, 7) + "-" + date.substring(0, 4) +
                 " " + time;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.id_search);
+        SearchView sv = (SearchView) menuItem.getActionView();
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.updateAdapter(dbManager.getFromDB(newText));
+
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
 }

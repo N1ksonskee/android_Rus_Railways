@@ -65,4 +65,10 @@ public class CustomArrayAdapter extends ArrayAdapter<RusRailwaysInfo> {
             tvStatus = v.findViewById(R.id.tv_status);
         }
     }
+
+    public void updateAdapter(ArrayList<RusRailwaysInfo> newList) {
+        list.clear();
+        list.addAll(newList);
+        notifyDataSetChanged();
+    }
 }
